@@ -331,8 +331,9 @@ async function isPodmanLocalImageLatest(): Promise<boolean> {
     ]);
 
     const podmanImageTime = new Date(podmanLocalImageTimeStamp.stdout).getTime();
-
+    core.debug(`Podman image time ---> ${podmanImageTime}`);
     const dockerImageTime = new Date(pulledImageCreationTimeStamp.stdout).getTime();
+    core.debug(`Docker image time ---> ${dockerImageTime}`);
 
     return podmanImageTime > dockerImageTime;
 }
